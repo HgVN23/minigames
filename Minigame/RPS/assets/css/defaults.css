@@ -1,0 +1,70 @@
+:root {
+	--border: 2px solid #525252;
+	--bg: #171717;
+	--border-light: #d7d7d7;
+	--bg-light: #f3f3f3;
+	--hover-color: #1d4ed8;
+	font-family: sans-serif;
+	margin: 0;
+	user-select: none;
+}
+* {
+	color: white;
+}
+body {
+	background-color: #262626;
+}
+.box {
+	background-color: var(--bg);
+	border: var(--border);
+	border-radius: 40px;
+	margin: 2% 0 2% 0;
+}
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.center {
+	margin: 2% auto 2% auto;
+}
+.text {
+	font-size: 35px;
+}
+.rock, .paper, .scissors {
+	border: var(--border);
+	border-radius: 50%;
+	cursor: pointer;
+	margin: 6px;
+	height: 50px;
+	padding: 10px;
+	width: 50px;
+}
+.rock:hover, .paper:hover, .scissors:hover {
+	border-color: var(--hover-color);
+}
+.rock:active, .paper:active, .scissors:active {
+	border-color: yellow;
+}
+.rock {
+	content: url(../media/rock.png);
+}
+.paper {
+	content: url(../media/paper.png);
+}
+.scissors {
+	content: url(../media/scissors.png);
+}
+button {
+	background-color: transparent;
+	border: var(--border);
+	cursor: pointer;
+	font-size: 20px;
+	margin: 0 auto 0 auto;
+}
+button:hover {
+	border-color: var(--hover-color);
+}
+button:active {
+	border-color: yellow;
+}

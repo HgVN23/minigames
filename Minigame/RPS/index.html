@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="assets/css/defaults.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Title -->
+	<title>Rock/Paper/Scissors | Minigame by Hg</title>
+	<meta property="og:title" content="Rock/Paper/Scissors | Minigame by Hg">
+	<meta name="twitter:title" content="Rock/Paper/Scissors | Minigame by Hg">
+	<!-- Description -->
+	<meta name="description" content="Rock/Paper/Scissors">
+	<meta property="og:description" content="Rock/Paper/Scissors">
+	<meta name="twitter:description" content="Rock/Paper/Scissors">
+	<!-- Image -->
+	<meta property="og:image" content="https://raw.githubusercontent.com/HgVN23/minigames/RPS/main/assets/media/thumbnail.png">
+	<meta name="twitter:image" content="https://raw.githubusercontent.com/HgVN23/minigames/RPS/main/assets/media/thumbnail.png">
+	<!-- Something -->
+	<meta property="og:url" content="https://hgvn23.github.io/minigames/RPS">
+	<meta property="og:image:width" content="1280">
+	<meta property="og:image:height" content="720">
+	<meta property="og:site_name" content="Minigame by Hg">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="icon" href="assets/media/rock.png">
+</head>
+<body onload="stats()">
+	<div class="box">
+		<div class="flex">
+			<div class="center">
+				<div class="text player">Player: ...</div>
+				<div class="text ai">AI: ...</div>
+				<div class="text result">Result: ...</div>
+			</div>
+		</div>
+
+		<div class="flex">
+			<div class="choice rock">Rock</div>
+			<div class="choice paper">Paper</div>
+			<div class="choice scissors">Scissors</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="flex">
+			<div class="center">
+				<div class="text">[ Your stats ]</div>
+				<div class="text win"></div>
+				<div class="text lose"></div>
+				<div class="text draw"></div>
+				<button class="text" onclick="reset()">Reset</button>
+			</div>
+		</div>
+	</div>
+	<script src="assets/javascript/main.js"></script>
+</body>
