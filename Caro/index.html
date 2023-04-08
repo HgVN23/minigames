@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+
+	<title>Caro | Minigame by Hg</title>
+	<meta name="description" content="Caro">
+	<style type="text/css">
+		:root {
+			--border: 2px solid #525252;
+			--bg: #171717;
+			--hover-color: #1d4ed8;
+			--bg-main: #262626;
+		}
+		* {
+			scroll-behavior: smooth;
+			user-select: none;
+			margin: 0;
+			padding: 0;
+			font-size: 16px;
+			color: white;
+		}
+		body {
+			background-color: var(--bg-main);
+		}
+		::-webkit-scrollbar {
+			background-color: var(--bg-main);
+			width: 10px;
+		}
+		::-webkit-scrollbar-thumb {
+			background-color: var(--bg);
+			border: var(--border);
+		}
+		::-webkit-scrollbar-thumb:hover {
+			border: 2px solid var(--hover-color);
+		}
+		.grid {
+			margin: 2rem;
+			width: 90rem;
+		}
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.slot {
+			width: 3rem;
+			height: 3rem;
+			outline: var(--border);
+			outline-width: 1px;
+			font-size: 1.1rem;
+			text-align: center;
+		}
+		.slot:hover {
+			outline: 1px solid blue;
+		}
+		.slot:active {
+			outline: 1px solid yellow;
+		}
+		.X::before {
+			content: 'X';
+			color: red;
+			font-size: 3rem;
+		}
+		.O::before {
+			content: 'O';
+			color: blue;
+			font-size: 3rem;
+		}
+		.stop {
+			height: 100%;
+			width: 100%;
+			position: fixed;
+			background: rgba(38, 38, 38, .80);
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1;
+		}
+		.nof,
+		.restart {
+			width: fit-content;
+			height: fit-content;
+			border: var(--border);
+			background-color: var(--bg-main);
+			margin: 10rem auto 0;
+			font-size: 5rem;
+			padding: 1rem;
+		}
+		.restart {
+			margin: 1rem auto;
+			display: flex;
+		}
+		a {
+			font-size: 2rem;
+			text-decoration: none;
+		}
+		.hide {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="grid"></div>
+	<div class="stop hide">
+		<div class="nof">X thắng</div>
+		<div class="restart"><a href="">Chơi lại</a></div>
+	</div>
+	<script type="text/javascript">
+		for(let i = 0; i < 30; i++) {
+			let slotTemp = ``;
+			for(let j = 0; j < 30; j++)
+				slotTemp += `<div class="slot" id="${i * 100 + j}">${i * 100 + j}</div>`;
+			let rowCreate = document.createElement('div');
+			rowCreate.classList.add('row');
+			rowCreate.innerHTML = slotTemp;
+			document.querySelector('.grid').appendChild(rowCreate);
+		}
+
+		var slotList = document.querySelectorAll('.slot');
+		for(let i = 0; i < slotList.length; i++) {
+			slotList[i].addEventListener('click', select);
+		}
+
+		let turn = 0, slotIdX = 0, slotIdO = 0;
+		let slotX = [], slotO = [];
+		function select() {
+			if(turn === 0) {
+				this.classList.add('O');
+				slotO[slotIdO] = parseInt(this.id);
+				slotIdO++;
+				check(slotO);
+				turn = 1;
+			} else {
+				this.classList.add('X');
+				slotX[slotIdX] = parseInt(this.id);
+				slotIdX++;
+				check(slotX);
+				turn = 0;
+			}
+			this.removeEventListener('click', select);
+			this.innerHTML = null;
+		}
+		function check(slots) {
+			for(let i = 0; i < slots.length; i++) {
+				let checkRow = 0, checkRight = 0, checkCol = 0, checkLeft = 0;
+				for(let j = 1; j < 5; j++)
+					for(let k = 0; k < slots.length; k++) {
+						if(slots[k] == slots[i] + 1 * j) {
+							checkRow++;
+						}
+						if(slots[k] == slots[i] + 101 * j) {
+							checkRight++;
+						}
+						if(slots[k] == slots[i] + 100 * j) {
+							checkCol++;
+						}
+						if(slots[k] == slots[i] + 99 * j) {
+							checkLeft++;
+						}
+					}
+				if(checkRow == 4 || checkRight == 4 || checkCol == 4 || checkLeft == 4) {
+					if(turn == 0)
+						document.querySelector('.nof').textContent = 'O thắng'
+					else
+						document.querySelector('.nof').textContent = 'X thắng'
+					document.querySelector('.hide').classList.remove('hide');
+					break;
+				}
+			}
+		}
+	</script>
+</body>
