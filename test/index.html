@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>test</title>
+	<meta name="description" content="test">
+	<style type="text/css">
+		body {
+			background-color: black;
+			gap: 32px;
+			display: flex;
+			justify-content: center;
+		}
+		.square {
+			width: 128px;
+			height: 128px;
+			border: 2px solid white;
+		}
+		.color {
+			background-color: blue;
+		}
+		.select {
+			border-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="square color"></div>
+	<div class="square uncolor"></div>
+	<script type="text/javascript">
+		const color = document.querySelector('.color');
+		color.addEventListener('click', pick);
+		function pick() {
+			color.classList.add('select')
+			color.removeEventListener('click', pick);
+			color.addEventListener('click', drop);
+		}
+		function drop() {
+			color.classList.remove('select')
+			color.removeEventListener('click', drop);
+			color.addEventListener('click', pick);
+		}
+
+		const uncolor = document.querySelector('.uncolor');
+		uncolor.addEventListener('click', move);
+		function move() {
+			if(color.classList.includes('select')) {
+				uncolor.classList.add('color')
+				uncolor.classList.remove('uncolor')
+			}
+		}
+	</script>
+</body>

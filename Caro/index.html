@@ -107,23 +107,24 @@
 		<div class="restart"><a href="">Chơi lại</a></div>
 	</div>
 	<script type="text/javascript">
-		for(let i = 0; i < 30; i++) {
-			let slotTemp = ``;
-			for(let j = 0; j < 30; j++)
-				slotTemp += `<div class="slot" id="${i * 100 + j}">${i * 100 + j}</div>`;
-			let rowCreate = document.createElement('div');
+		for(var i = 0; i < 30; i++) {
+			var slotTemp = ``;
+			for(var j = 0; j < 30; j++)
+				slotTemp += `<div class="slot" id="${i * 100 + j}"></div>`;
+				// slotTemp += `<div class="slot" id="${i * 100 + j}">${i * 100 + j}</div>`;
+			var rowCreate = document.createElement('div');
 			rowCreate.classList.add('row');
 			rowCreate.innerHTML = slotTemp;
 			document.querySelector('.grid').appendChild(rowCreate);
 		}
 
 		var slotList = document.querySelectorAll('.slot');
-		for(let i = 0; i < slotList.length; i++) {
+		for(var i = 0; i < slotList.length; i++) {
 			slotList[i].addEventListener('click', select);
 		}
 
-		let turn = 0, slotIdX = 0, slotIdO = 0;
-		let slotX = [], slotO = [];
+		var turn = 0, slotIdX = 0, slotIdO = 0;
+		var slotX = [], slotO = [];
 		function select() {
 			if(turn === 0) {
 				this.classList.add('O');
@@ -142,10 +143,10 @@
 			this.innerHTML = null;
 		}
 		function check(slots) {
-			for(let i = 0; i < slots.length; i++) {
-				let checkRow = 0, checkRight = 0, checkCol = 0, checkLeft = 0;
-				for(let j = 1; j < 5; j++)
-					for(let k = 0; k < slots.length; k++) {
+			for(var i = 0; i < slots.length; i++) {
+				var checkRow = 0, checkRight = 0, checkCol = 0, checkLeft = 0;
+				for(var j = 1; j < 5; j++)
+					for(var k = 0; k < slots.length; k++) {
 						if(slots[k] == slots[i] + 1 * j) {
 							checkRow++;
 						}
